@@ -7,12 +7,32 @@ const slug = name.toLowerCase().replace(/\s+/g, "-");
   <img src={image} alt={name} loading="lazy" />
   <div class="card-content">
     <figcaption class="card-name">
-      <a href={`/${slug}`}><span class="card-emoji">{favorite_emoji}</span> {name}</a>
+      <a href={`/${slug}`} class="name-link btn-trace" data-name={name}>
+        <svg class="btn-border" viewBox="0 0 600 120" width="600" height="120">
+          <rect x="2" y="2" width="596" height="116" rx="4"></rect>
+        </svg>
+        <span class="card-emoji">{favorite_emoji}</span> <span class="name-text">{name}</span>
+      </a>
     </figcaption>
     <nav class="card-links">
-      <a href={github_permalink} target="_blank" rel="noopener">Portfolio</a>
-      <a href={github_profile} target="_blank" rel="noopener">GitHub</a>
-      <a href={codepen_profile} target="_blank" rel="noopener">CodePen</a>
+      <a href={github_permalink} target="_blank" rel="noopener" class="btn-trace">
+        <svg class="btn-border" viewBox="0 0 160 48" width="160" height="48">
+          <rect x="2" y="2" width="156" height="44" rx="4"></rect>
+        </svg>
+        Portfolio
+      </a>
+      <a href={github_profile} target="_blank" rel="noopener" class="btn-trace">
+        <svg class="btn-border" viewBox="0 0 160 48" width="160" height="48">
+          <rect x="2" y="2" width="156" height="44" rx="4"></rect>
+        </svg>
+        GitHub
+      </a>
+      <a href={codepen_profile} target="_blank" rel="noopener" class="btn-trace">
+        <svg class="btn-border" viewBox="0 0 160 48" width="160" height="48">
+          <rect x="2" y="2" width="156" height="44" rx="4"></rect>
+        </svg>
+        CodePen
+      </a>
     </nav>
   </div>
 </figure>
@@ -23,8 +43,8 @@ const slug = name.toLowerCase().replace(/\s+/g, "-");
   .card {
     background-color: transparent;
   border-radius: 20px;
-  box-shadow: 0px 0 31px 0px #D8DDDE;(0 0 0 / 10%);
-  -webkit-backdrop-filter: blur(80px);
+  box-shadow: 0px 0 31px 0px #D8DDDE;(0 0 0 / 50%);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(80px);
   border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 8px;
@@ -49,10 +69,53 @@ const slug = name.toLowerCase().replace(/\s+/g, "-");
   figcaption.card-name {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #10212b;
+    color: #161925;
     text-decoration: none;
     margin: 0;
   }
+
+  .card-name a.btn-trace {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .card-name a.btn-trace .btn-border {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .card-name a.btn-trace .card-emoji,
+  .card-name a.btn-trace .name-text {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-name a.btn-trace .btn-border rect {
+    stroke-dasharray: 1424;
+    stroke-dashoffset: 1424;
+  }
+
+  .card-name a.btn-trace:hover .btn-border rect {
+    stroke-dashoffset: 0;
+  }
+
+  .card-name a.btn-trace:hover {
+    color: #d62b1e;
+  }
+
+
 
   .card-name a {
     color: inherit;
@@ -80,17 +143,67 @@ const slug = name.toLowerCase().replace(/\s+/g, "-");
   }
 
   .card-links a {
-    text-decoration: none;
-    color: #10212b;
-    border-bottom: 1px solid currentColor;
-    gap: 0.25rem;
-    border: 1px solid rgba(16, 33, 43, 0.18);
-    border-radius: 5px;
-    padding: 0.25rem 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .card-links a:hover {
-    background: rgba(16, 33, 43, 0.08);
-    color: #10212b;
+ 
+  .btn-trace {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 12px 28px;
+    text-decoration: none;
+    color: #1e1a16;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+  }
+
+  .btn-border {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .btn-border rect {
+    fill: none;
+    stroke: #d62b1e;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    
+    stroke-dasharray: 1424;
+    stroke-dashoffset: 1424;
+    transition: stroke-dashoffset 0.6s ease;
+    
+  }
+  
+
+  .btn-trace:hover .btn-border rect {
+    stroke-dashoffset: 0;
+  }
+
+  .card-links .btn-trace:hover {
+    color: #d62b1e;
   }
 </style>
+
+<script>
+  const nameLinks = document.querySelectorAll('.name-link');
+  nameLinks.forEach(nameLink => {
+    const nameText = nameLink.querySelector('.name-text');
+    const originalName = nameLink.dataset.name;
+    
+    nameLink.addEventListener('mouseenter', () => {
+      nameText.textContent = 'Get to Know Them';
+    });
+    
+    nameLink.addEventListener('mouseleave', () => {
+      nameText.textContent = originalName;
+    });
+  });
+</script>

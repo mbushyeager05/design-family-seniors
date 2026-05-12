@@ -11,20 +11,51 @@ const { title } = Astro.props;
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-
-    <!-- Font Share -->
-     <link href="https://api.fontshare.com/v2/css?f[]=bevellier@400,500,600,700&display=swap" rel="stylesheet"> 
+    <link href="https://api.fontshare.com/v2/css?f[]=bevellier@400,500,600,700&display=swap" rel="stylesheet">
     <title>{title}</title>
-
   </head>
+
   <body>
-    
-    <!-- dynamically insert content -->
+
+    <svg id="ribbons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+
+      <!-- BLUE — top-right to bottom-left -->
+      <path
+        id="r-blue"
+        class="ribbon"
+        d="M 1500 -60
+           C 1200 100, 1100 400,  900 350
+           C  680 300,  520 600,  380 580
+           C  200 550,   60 760,  -60 960"
+      />
+
+      <!-- ORANGE — top-left to bottom-right -->
+      <path
+        id="r-orange"
+        class="ribbon"
+        d="M -60 -60
+           C  140 180,  240  80,  440 260
+           C  640 440,  700 200,  920 420
+           C 1120 600, 1240 480, 1500 760"
+      />
+
+      <!-- RED — top-center to bottom-right -->
+      <path
+        id="r-red"
+        class="ribbon"
+        d="M 400 -60
+           C  500 120,  300 280,  520 420
+           C  740 560,  900 380, 1080 580
+           C 1220 720, 1360 700, 1500 1500"
+      />
+
+    </svg>
+
     <slot />
-  
-<footer>
-  <p>Copyright &copy;  Department of Design. All rights reserved.</p>
-</footer>
+
+    <footer>
+      <p>Copyright &copy; Department of Design. All rights reserved.</p>
+    </footer>
 
   </body>
 </html>

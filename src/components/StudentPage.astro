@@ -4,25 +4,181 @@ const { name, image, favorite_emoji, github_permalink, github_profile, codepen_p
 
 <style>
   .backtohome {
-    margin-bottom: 1rem;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 20;
+    margin: 0;
     text-decoration: none;
-    color: #333;
+      border-radius: 20px;
+  box-shadow: 0px 0 31px 0px #D8DDDE;(0 0 0 / 50%);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(80px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
     font-weight: bold;
-  border: 2px solid #333;
     padding: 0.5rem 1rem;
-    border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
   }
+
+  .information-card {
+    max-width: 100rem;
+    margin: 4rem auto;
+    
+   background-color: transparent;
+    margin: 4rem auto;
+  
+  border-radius: 20px;
+  box-shadow: 0px 0 31px 0px #D8DDDE;(0 0 0 / 50%);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(80px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+  }
+
+img {
+  width: 40%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    clip-path: polygon(0 0, calc(100% - 2rem) 0, 100% 50%, calc(100% - 2rem) 100%, 0 100%);
+  }
+
+  .information-card h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #161925;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .information-card p{
+    font-size: 2rem;
+  }
+
+  .student-name {
+    display: block;
+    width: 30rem;
+    margin: 3rem auto 1rem;
+    padding: 0.75rem 1rem;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #161925;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    box-shadow: 0px 0 31px 0px #D8DDDE;(0 0 0 / 50%);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(80px);
+    text-align: center;
+  }
+
+  .card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .information-card nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+
+
+  /* Racing button styles */
+  .btn-trace {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #1e1a16;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    border-radius: 6px;
+    overflow: visible;
+  }
+
+  .btn-border {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .btn-border rect {
+    fill: none;
+    stroke: #d62b1e;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 416;
+    stroke-dashoffset: 416;
+    transition: stroke-dashoffset 0.6s ease;
+  }
+
+  .btn-trace:hover .btn-border rect {
+    stroke-dashoffset: 0;
+  }
+
+  .btn-trace > span {
+    position: relative;
+    z-index: 1;
+  }
+
+
+
+  
+
+
 
 </style>
 
 <button onclick="window.location.href='/'" class="backtohome">Back to Home</button>
 
-<img src={image} alt={name} />
-<h1><span>{favorite_emoji}</span> {name}</h1>
-<p> {bio} </p>
-<nav>
-  <a href={github_permalink} target="_blank" rel="noopener">Portfolio</a>
-  <a href={github_profile} target="_blank" rel="noopener">GitHub</a>
-  <a href={codepen_profile} target="_blank" rel="noopener">CodePen</a>
-</nav>
+<h1 class="student-name"><span>{favorite_emoji}</span> {name}</h1>
+
+<div class="information-card">
+  <img src={image} alt={name} />
+  <div class="card-content">
+    <p> {bio} </p>
+    <nav>
+      <a href={github_permalink} target="_blank" rel="noopener" class="btn-trace">
+        <svg class="btn-border" viewBox="0 0 160 48" width="160" height="48" aria-hidden="true">
+          <rect x="2" y="2" width="156" height="44" rx="6"></rect>
+        </svg>
+        <span>Portfolio</span>
+      </a>
+      <a href={github_profile} target="_blank" rel="noopener" class="btn-trace">
+        <svg class="btn-border" viewBox="0 0 160 48" width="160" height="48" aria-hidden="true">
+          <rect x="2" y="2" width="156" height="44" rx="6"></rect>
+        </svg>
+        <span>GitHub</span>
+      </a>
+      <a href={codepen_profile} target="_blank" rel="noopener" class="btn-trace">
+        <svg class="btn-border" viewBox="0 0 160 48" width="160" height="48" aria-hidden="true">
+          <rect x="2" y="2" width="156" height="44" rx="6"></rect>
+        </svg>
+        <span>CodePen</span>
+      </a>
+    </nav>
+  </div>
+
+</div>
