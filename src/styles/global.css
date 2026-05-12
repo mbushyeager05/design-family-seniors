@@ -11,6 +11,8 @@ body {
     linear-gradient(rgba(180,160,140,.18) 1px, transparent 1px),
     linear-gradient(90deg, rgba(180,160,140,.18) 1px, transparent 1px);
   background-size: 20px 20px, 20px 20px, 80px 80px, 80px 80px;
+  background-attachment: fixed;
+  background-position: 0 0, 0 0, 0 0, 0 0;
 }
 
 h1 {

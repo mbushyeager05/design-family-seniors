@@ -7,7 +7,7 @@ const slug = name.toLowerCase().replace(/\s+/g, "-");
   <img src={image} alt={name} loading="lazy" />
   <div class="card-content">
     <figcaption class="card-name">
-      <a href={`/${slug}`} class="name-link btn-trace" data-name={name}>
+      <a href={`/${slug}`} class="name-link btn-trace btn-red" data-name={name}>
         <svg class="btn-border" viewBox="0 0 600 120" width="600" height="120">
           <rect x="2" y="2" width="596" height="116" rx="4"></rect>
         </svg>
@@ -15,19 +15,19 @@ const slug = name.toLowerCase().replace(/\s+/g, "-");
       </a>
     </figcaption>
     <nav class="card-links">
-      <a href={github_permalink} target="_blank" rel="noopener" class="btn-trace">
+      <a href={github_permalink} target="_blank" rel="noopener" class="btn-trace btn-blue">
         <svg class="btn-border" viewBox="0 0 160 48" width="160" height="48">
           <rect x="2" y="2" width="156" height="44" rx="4"></rect>
         </svg>
         Portfolio
       </a>
-      <a href={github_profile} target="_blank" rel="noopener" class="btn-trace">
+      <a href={github_profile} target="_blank" rel="noopener" class="btn-trace btn-orange">
         <svg class="btn-border" viewBox="0 0 160 48" width="160" height="48">
           <rect x="2" y="2" width="156" height="44" rx="4"></rect>
         </svg>
         GitHub
       </a>
-      <a href={codepen_profile} target="_blank" rel="noopener" class="btn-trace">
+      <a href={codepen_profile} target="_blank" rel="noopener" class="btn-trace btn-red">
         <svg class="btn-border" viewBox="0 0 160 48" width="160" height="48">
           <rect x="2" y="2" width="156" height="44" rx="4"></rect>
         </svg>
@@ -112,7 +112,7 @@ const slug = name.toLowerCase().replace(/\s+/g, "-");
   }
 
   .card-name a.btn-trace:hover {
-    color: #d62b1e;
+    color: var(--btn-color, #d62b1e);
   }
 
 
@@ -172,24 +172,28 @@ const slug = name.toLowerCase().replace(/\s+/g, "-");
 
   .btn-border rect {
     fill: none;
-    stroke: #d62b1e;
+    stroke: var(--btn-color, #d62b1e);
     stroke-width: 2.5;
     stroke-linecap: round;
-    
     stroke-dasharray: 1424;
     stroke-dashoffset: 1424;
     transition: stroke-dashoffset 0.6s ease;
-    
   }
   
 
   .btn-trace:hover .btn-border rect {
     stroke-dashoffset: 0;
   }
-
-  .card-links .btn-trace:hover {
-    color: #d62b1e;
+  .btn-trace:hover {
+    color: var(--btn-color, #d62b1e);
   }
+  .card-links .btn-trace:hover {
+    color: var(--btn-color, #d62b1e);
+  }
+
+  .btn-trace.btn-blue { --btn-color: #5b8dee; }
+  .btn-trace.btn-orange { --btn-color: #f0921a; }
+  .btn-trace.btn-red { --btn-color: #d62b1e; }
 </style>
 
 <script>

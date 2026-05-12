@@ -126,7 +126,7 @@ img {
 
   .btn-border rect {
     fill: none;
-    stroke: #d62b1e;
+    stroke: var(--btn-color, #d62b1e);
     stroke-width: 2.5;
     stroke-linecap: round;
     stroke-dasharray: 416;
@@ -142,6 +142,14 @@ img {
     position: relative;
     z-index: 1;
   }
+
+  .btn-trace:hover {
+    color: var(--btn-color, #d62b1e);
+  }
+
+  .btn-trace.btn-blue { --btn-color: #5b8dee; }
+  .btn-trace.btn-orange { --btn-color: #f0921a; }
+  .btn-trace.btn-red { --btn-color: #d62b1e; }
 
 
 
@@ -160,19 +168,19 @@ img {
   <div class="card-content">
     <p> {bio} </p>
     <nav>
-      <a href={github_permalink} target="_blank" rel="noopener" class="btn-trace">
+      <a href={github_permalink} target="_blank" rel="noopener" class="btn-trace btn-blue">
         <svg class="btn-border" viewBox="0 0 160 48" width="160" height="48" aria-hidden="true">
           <rect x="2" y="2" width="156" height="44" rx="6"></rect>
         </svg>
         <span>Portfolio</span>
       </a>
-      <a href={github_profile} target="_blank" rel="noopener" class="btn-trace">
+      <a href={github_profile} target="_blank" rel="noopener" class="btn-trace btn-orange">
         <svg class="btn-border" viewBox="0 0 160 48" width="160" height="48" aria-hidden="true">
           <rect x="2" y="2" width="156" height="44" rx="6"></rect>
         </svg>
         <span>GitHub</span>
       </a>
-      <a href={codepen_profile} target="_blank" rel="noopener" class="btn-trace">
+      <a href={codepen_profile} target="_blank" rel="noopener" class="btn-trace btn-red">
         <svg class="btn-border" viewBox="0 0 160 48" width="160" height="48" aria-hidden="true">
           <rect x="2" y="2" width="156" height="44" rx="6"></rect>
         </svg>
